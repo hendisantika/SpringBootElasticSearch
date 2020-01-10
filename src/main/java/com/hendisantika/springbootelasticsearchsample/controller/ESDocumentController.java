@@ -1,11 +1,14 @@
 package com.hendisantika.springbootelasticsearchsample.controller;
 
+import com.hendisantika.springbootelasticsearchsample.domain.EmployeeDocument;
 import com.hendisantika.springbootelasticsearchsample.repository.EmployeeDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -36,5 +39,16 @@ public class ESDocumentController {
         } catch (Exception e) {
             return "Failed to delete documents";
         }
+    }
+
+    @PostMapping("/save")
+    public String saveAllDocuments() {
+        //Store Documents
+        employeeDocumentRepository.saveAll(Arrays.asList(new EmployeeDocument("1", "pdf", "Java Dev Zone"),
+                new EmployeeDocument("2", "msg", "subject:reinvetion"),
+                new EmployeeDocument("3", "pdf", "Spring boot sessions"),
+                new EmployeeDocument("4", "docx", "meeting agenda"),
+                new EmployeeDocument("5", "docx", "Spring boot + Elastic Search")));
+        return "5 documents saved!!!";
     }
 }
