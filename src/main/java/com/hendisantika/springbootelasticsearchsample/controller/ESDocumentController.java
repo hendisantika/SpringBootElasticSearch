@@ -5,6 +5,7 @@ import com.hendisantika.springbootelasticsearchsample.repository.EmployeeDocumen
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -40,15 +41,21 @@ public class ESDocumentController {
         }
     }
 
-    @PostMapping("/save")
-    public String saveAllDocuments() {
-        //Store Documents
+    @GetMapping("/init")
+    public String initDocuments() {
+        //Init Store Documents
         employeeDocumentRepository.saveAll(Arrays.asList(new EmployeeDocument("1", "pdf", "Java Dev Zone"),
-                new EmployeeDocument("2", "msg", "subject:reinvetion"),
+                new EmployeeDocument("2", "msg", "subject:reinvention"),
                 new EmployeeDocument("3", "pdf", "Spring boot sessions"),
                 new EmployeeDocument("4", "docx", "meeting agenda"),
                 new EmployeeDocument("5", "docx", "Spring boot + Elastic Search")));
         return "5 documents saved!!!";
+    }
+
+    @PostMapping("/save")
+    public EmployeeDocument saveNewDocument(@RequestBody @Valid EmployeeDocument employeeDoc) {
+        //Store Documents
+        return employeeDocumentRepository.save(employeeDoc);
     }
 
     @GetMapping("/getAll")
