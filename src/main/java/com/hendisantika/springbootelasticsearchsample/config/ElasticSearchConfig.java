@@ -40,4 +40,3 @@ public class ElasticSearchConfig {
         return RestClients.create(clientConfiguration).rest();
     }
 }
-}

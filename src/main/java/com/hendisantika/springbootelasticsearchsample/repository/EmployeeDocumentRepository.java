@@ -14,7 +14,7 @@ import java.util.List;
  * Date: 11/01/20
  * Time: 06.10
  */
-public interface EmployeDocumentRepository extends ElasticsearchRepository<EmployeeDocument, String> {
+public interface EmployeeDocumentRepository extends ElasticsearchRepository<EmployeeDocument, String> {
     List<EmployeeDocument> findByDocTitleEndsWith(String name);
 
     List<EmployeeDocument> findByDocTitleStartsWith(String name);
