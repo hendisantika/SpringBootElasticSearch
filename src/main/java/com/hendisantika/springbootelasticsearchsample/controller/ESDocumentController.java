@@ -3,13 +3,12 @@ package com.hendisantika.springbootelasticsearchsample.controller;
 import com.hendisantika.springbootelasticsearchsample.domain.EmployeeDocument;
 import com.hendisantika.springbootelasticsearchsample.repository.EmployeeDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -50,5 +49,15 @@ public class ESDocumentController {
                 new EmployeeDocument("4", "docx", "meeting agenda"),
                 new EmployeeDocument("5", "docx", "Spring boot + Elastic Search")));
         return "5 documents saved!!!";
+    }
+
+    @GetMapping("/getAll")
+    public List<EmployeeDocument> getAllDocs() {
+        List<EmployeeDocument> documents = new ArrayList<>();
+        // iterate all documents and add it to list
+        for (EmployeeDocument doc : this.employeeDocumentRepository.findAll()) {
+            documents.add(doc);
+        }
+        return documents;
     }
 }
