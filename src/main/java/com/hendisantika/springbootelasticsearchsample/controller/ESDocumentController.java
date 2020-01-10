@@ -2,6 +2,7 @@ package com.hendisantika.springbootelasticsearchsample.controller;
 
 import com.hendisantika.springbootelasticsearchsample.repository.EmployeeDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +26,15 @@ public class ESDocumentController {
     @RequestMapping("/")
     public String SpringBootESExample() {
         return "Welcome to Spring Boot Elastic Search Example! " + new Date();
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteAllDocuments() {
+        try {   //delete all documents from solr core
+            employeeDocumentRepository.deleteAll();
+            return "documents deleted succesfully!";
+        } catch (Exception e) {
+            return "Failed to delete documents";
+        }
     }
 }
