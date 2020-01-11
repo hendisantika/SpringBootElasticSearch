@@ -35,7 +35,7 @@ public class ESDocumentController {
     public String deleteAllDocuments() {
         try {   //delete all documents from solr core
             employeeDocumentRepository.deleteAll();
-            return "documents deleted succesfully!";
+            return "documents deleted successfully!";
         } catch (Exception e) {
             return "Failed to delete documents";
         }
