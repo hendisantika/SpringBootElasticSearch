@@ -31,13 +31,23 @@ public class ESDocumentController {
         return "Welcome to Spring Boot Elastic Search Example! " + new Date();
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/deleteAll")
     public String deleteAllDocuments() {
         try {   //delete all documents from solr core
             employeeDocumentRepository.deleteAll();
             return "documents deleted succesfully!";
         } catch (Exception e) {
             return "Failed to delete documents";
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteDocumentById(@PathVariable("id") String id) {
+        try {   //delete all documents from solr core
+            employeeDocumentRepository.deleteById(id);
+            return "Document with " + id + " has been deleted successfully!";
+        } catch (Exception e) {
+            return "Failed to delete document with id " + id;
         }
     }
 
