@@ -8,10 +8,12 @@
 
 ## Screen shot
 
-**Save Documents**
+**Save Document**
 ```
 POST http://localhost:8080/save
 ```
+
+![Save Document](img/add.png "Save Document")
 
 **Retrieved Documents**
 
@@ -19,12 +21,15 @@ POST http://localhost:8080/save
 GET http://localhost:8080/getAll
 ```
 
+![Retrieved Documents](img/all.png "Retrieved Documents")
+
 **Delete Document By Id**
 
 ```
 DELETE http://localhost:8080/delete/{id}
 ```
 
+![Delete Document By Id](img/delete.png "Delete Document By Id")
 
 **Delete All Documents**
 
@@ -32,3 +37,4 @@ DELETE http://localhost:8080/delete/{id}
 DELETE http://localhost:8080/deleteAll
 ```
 
+![Delete All Documents](img/deleteAll.png "Delete All Documents")
