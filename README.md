@@ -23,6 +23,18 @@ GET http://localhost:8080/getAll
 
 ![Retrieved Documents](img/all.png "Retrieved Documents")
 
+**Retrieved Document By Id**
+
+```
+GET http://localhost:8080/find/{id}
+```
+
+![Retrieved Document By ID](img/find.png "Retrieved Document By Id")
+
+**Update Document By Id**
+
+![Update Document By Id](img/update.png "Update Document By Id")
+
 **Delete Document By Id**
 
 ```
