@@ -1,0 +1,186 @@
+{
+  "info": {
+    "_postman_id": "17c6a206-b710-4870-bcbe-cdc0fb71b898",
+    "name": "ElasticSearch API Collection",
+    "description": "ElasticSearch API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Documents",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/getAll",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "getAll"
+          ]
+        },
+        "description": "Get All Documents"
+      },
+      "response": []
+    },
+    {
+      "name": "Add New Document",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"docType\": \"PDF\",\n    \"docTitle\": \"Mudah Belajar Spring Boot Kafka\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "save"
+          ]
+        },
+        "description": "Add New Document"
+      },
+      "response": []
+    },
+    {
+      "name": "Init Documents",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/init",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "init"
+          ]
+        },
+        "description": "Init Documents"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Document by Id",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/delete/TT_alm8BhMTN-olM8-mG",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "delete",
+            "TT_alm8BhMTN-olM8-mG"
+          ]
+        },
+        "description": "Delete Document by Id"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete All Documents ",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/deleteAll",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "deleteAll"
+          ]
+        },
+        "description": "Delete All Documents "
+      },
+      "response": []
+    },
+    {
+      "name": "Update Document By Id",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"docType\": \"PDF\",\n    \"docTitle\": \"Spring Boot Microservice\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/update/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "update",
+            "5"
+          ]
+        },
+        "description": "Update Document By Id"
+      },
+      "response": []
+    },
+    {
+      "name": "Find Document by Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/find/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "find",
+            "5"
+          ]
+        },
+        "description": "Find Document by Id"
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
