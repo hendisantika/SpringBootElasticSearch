@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -49,6 +46,34 @@ public class ESDocumentController {
         } catch (Exception e) {
             return "Failed to delete document with id " + id;
         }
+    }
+
+    @PutMapping("/update/{id}")
+    public String updateDocumentById(@PathVariable("id") String id, @RequestBody @Valid EmployeeDocument employeeDocumentReq) {
+        EmployeeDocument employeeDocument = new EmployeeDocument();
+        try {
+            Optional<EmployeeDocument> optionalEmployeeDocument = employeeDocumentRepository.findById(id);
+            if (optionalEmployeeDocument.isPresent()) {
+                employeeDocument = optionalEmployeeDocument.get();
+                employeeDocument.setDocType(employeeDocumentReq.getDocType());
+                employeeDocument.setDocTitle(employeeDocumentReq.getDocTitle());
+                employeeDocumentRepository.save(employeeDocument);
+            }
+            return "Document with ID : " + id + " has been updated successfully!";
+        } catch (Exception e) {
+            return "Failed to update document with id " + id;
+        }
+    }
+
+    @GetMapping("/find/{id}")
+    public EmployeeDocument findDocumentById(@PathVariable("id") String id) {
+        EmployeeDocument employeeDocument = new EmployeeDocument();
+        Optional<EmployeeDocument> optionalEmployeeDocument = employeeDocumentRepository.findById(id);
+        if (optionalEmployeeDocument.isPresent()) {
+            employeeDocument = optionalEmployeeDocument.get();
+        }
+
+        return employeeDocument;
     }
 
     @GetMapping("/init")
