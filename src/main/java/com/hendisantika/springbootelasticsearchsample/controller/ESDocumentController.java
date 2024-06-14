@@ -2,8 +2,12 @@ package com.hendisantika.springbootelasticsearchsample.controller;
 
 import com.hendisantika.springbootelasticsearchsample.domain.EmployeeDocument;
 import com.hendisantika.springbootelasticsearchsample.repository.EmployeeDocumentRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,17 +33,52 @@ import java.util.Optional;
  * Time: 06.14
  */
 @RestController
+@RequestMapping("/")
+@RequiredArgsConstructor
 public class ESDocumentController {
 
-    @Autowired
-    private EmployeeDocumentRepository employeeDocumentRepository;
+    private final EmployeeDocumentRepository employeeDocumentRepository;
 
-    @RequestMapping("/")
+    @GetMapping
+    @Operation(
+            summary = "Add New Employee Data",
+            description = "Add New Employee Data.",
+            tags = {"Data"})
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    description = "Success",
+                    responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation =
+                            String.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Not found", responseCode = "404",
+                    content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Internal error", responseCode = "500"
+                    , content = @Content)
+    }
+    )
     public String SpringBootESExample() {
         return "Welcome to Spring Boot Elastic Search Example! " + new Date();
     }
 
     @DeleteMapping("/deleteAll")
+    @Operation(
+            summary = "Delete All Data",
+            description = "Delete All Data.",
+            tags = {"Data"})
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    description = "Success",
+                    responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation =
+                            String.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Not found", responseCode = "404",
+                    content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Internal error", responseCode = "500"
+                    , content = @Content)
+    }
+    )
     public String deleteAllDocuments() {
         try {   //delete all documents from solr core
             employeeDocumentRepository.deleteAll();
@@ -50,6 +89,23 @@ public class ESDocumentController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @Operation(
+            summary = "Delete Data by ID",
+            description = "Delete Data by ID.",
+            tags = {"Data"})
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    description = "Success",
+                    responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation =
+                            String.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Not found", responseCode = "404",
+                    content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Internal error", responseCode = "500"
+                    , content = @Content)
+    }
+    )
     public String deleteDocumentById(@PathVariable("id") String id) {
         try {   //delete all documents from solr core
             employeeDocumentRepository.deleteById(id);
@@ -60,6 +116,23 @@ public class ESDocumentController {
     }
 
     @PutMapping("/update/{id}")
+    @Operation(
+            summary = "Update Data",
+            description = "Update Data.",
+            tags = {"Data"})
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    description = "Success",
+                    responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation =
+                            String.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Not found", responseCode = "404",
+                    content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Internal error", responseCode = "500"
+                    , content = @Content)
+    }
+    )
     public String updateDocumentById(@PathVariable("id") String id, @RequestBody @Valid EmployeeDocument employeeDocumentReq) {
         EmployeeDocument employeeDocument = new EmployeeDocument();
         try {
@@ -77,6 +150,23 @@ public class ESDocumentController {
     }
 
     @GetMapping("/find/{id}")
+    @Operation(
+            summary = "Find Data",
+            description = "Find Data.",
+            tags = {"Data"})
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    description = "Success",
+                    responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation =
+                            String.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Not found", responseCode = "404",
+                    content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Internal error", responseCode = "500"
+                    , content = @Content)
+    }
+    )
     public EmployeeDocument findDocumentById(@PathVariable("id") String id) {
         EmployeeDocument employeeDocument = new EmployeeDocument();
         Optional<EmployeeDocument> optionalEmployeeDocument = employeeDocumentRepository.findById(id);
@@ -88,6 +178,23 @@ public class ESDocumentController {
     }
 
     @GetMapping("/init")
+    @Operation(
+            summary = "Init Data",
+            description = "Init Data.",
+            tags = {"Data"})
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    description = "Success",
+                    responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation =
+                            String.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Not found", responseCode = "404",
+                    content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Internal error", responseCode = "500"
+                    , content = @Content)
+    }
+    )
     public String initDocuments() {
         //Init Store Documents
         employeeDocumentRepository.saveAll(Arrays.asList(new EmployeeDocument("1", "pdf", "Java Dev Zone"),
@@ -99,12 +206,46 @@ public class ESDocumentController {
     }
 
     @PostMapping("/save")
+    @Operation(
+            summary = "Add New Data",
+            description = "Add New Data.",
+            tags = {"Data"})
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    description = "Success",
+                    responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation =
+                            String.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Not found", responseCode = "404",
+                    content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Internal error", responseCode = "500"
+                    , content = @Content)
+    }
+    )
     public EmployeeDocument saveNewDocument(@RequestBody @Valid EmployeeDocument employeeDoc) {
         //Store Documents
         return employeeDocumentRepository.save(employeeDoc);
     }
 
     @GetMapping("/getAll")
+    @Operation(
+            summary = "Get All Data",
+            description = "Get All Data.",
+            tags = {"Data"})
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    description = "Success",
+                    responseCode = "200",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation =
+                            String.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Not found", responseCode = "404",
+                    content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(description = "Internal error", responseCode = "500"
+                    , content = @Content)
+    }
+    )
     public List<EmployeeDocument> getAllDocs() {
         List<EmployeeDocument> documents = new ArrayList<>();
         // iterate all documents and add it to list
