@@ -5,8 +5,12 @@
 2. Go to the folder: `cd SpringBootElasticSearch`
 3. Run the application: `mvn clean spring-boot:run`
 4. Open your favorite browser: http://localhost:9200
+4. Open your favorite browser: http://localhost:8080/swagger-ui
 
 ## Screen shot
+
+**Swagger UI Page**
+![Swagger UI Page](img/SwaggerUI.png "Swagger UI Page")
 
 **Save Document**
 ```
