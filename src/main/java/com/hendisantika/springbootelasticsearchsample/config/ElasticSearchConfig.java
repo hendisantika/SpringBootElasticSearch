@@ -1,11 +1,9 @@
 package com.hendisantika.springbootelasticsearchsample.config;
 
-import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
-import org.springframework.data.elasticsearch.client.RestClients;
+import org.springframework.data.elasticsearch.client.elc.ElasticsearchConfiguration;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 /**
@@ -19,7 +17,7 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
  */
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "com.hendisantika.springbootelasticsearchsample.repository")
-public class ElasticSearchConfig {
+public class ElasticSearchConfig extends ElasticsearchConfiguration {
 
     @Value("${elasticsearch.host}")
     private String EsHost;
@@ -30,13 +28,26 @@ public class ElasticSearchConfig {
     @Value("${elasticsearch.clustername}")
     private String EsClusterName;
 
-    @Bean
-    RestHighLevelClient client() {
+    @Value("${elasticsearch.username}")
+    private String username;
 
-        ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                .connectedTo("localhost:9200", "localhost:9300")
+    @Value("${elasticsearch.password}")
+    private String password;
+
+    //    @Bean
+//    RestHighLevelClient client() {
+//
+//        ClientConfiguration clientConfiguration = ClientConfiguration.builder()
+//                .connectedTo("localhost:9200", "localhost:9300")
+//                .build();
+//
+//        return RestClients.create(clientConfiguration).rest();
+//    }
+    @Override
+    public ClientConfiguration clientConfiguration() {
+        return ClientConfiguration.builder()
+                .connectedTo(EsHost)
+                .withBasicAuth(username, password)
                 .build();
-
-        return RestClients.create(clientConfiguration).rest();
     }
 }

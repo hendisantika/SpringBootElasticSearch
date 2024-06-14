@@ -12,7 +12,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
  * Date: 11/01/20
  * Time: 06.04
  */
-@Document(indexName = "employee", type = "employee")
+@Document(indexName = "employee")
 public class EmployeeDocument {
     @Id
     private String id;
